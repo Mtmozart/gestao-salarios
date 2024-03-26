@@ -4,13 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class Payment {
-    private Long value;
-    private LocalDateTime date;
-    private Employee employee;
+public class Menage {
+    private Long id;
+    private User user;
+    private List<Payment> payments;
+
 }
