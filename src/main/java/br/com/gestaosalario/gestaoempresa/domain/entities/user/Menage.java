@@ -17,7 +17,8 @@ public class Menage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @OneToOne
     private User user;
-    private List<Payment> paymentsSeed = new ArrayList<>();
+   // private List<Payment> paymentsSeed = new ArrayList<>();
 
 }

@@ -11,14 +11,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Entity
+@Entity(name = "Employee")
 @Table(name = "employees")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @OneToOne
     private User user;
-    private Profile profile;
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Payment> paymentsReceived = new ArrayList<>();
+   /* @OneToMany(fetch = FetchType.EAGER)
+    private List<Payment> paymentsReceived = new ArrayList<>();*/
 }

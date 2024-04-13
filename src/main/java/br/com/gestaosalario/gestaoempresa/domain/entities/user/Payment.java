@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -15,7 +16,6 @@ import java.time.LocalDateTime;
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long value;
-    private LocalDateTime date;
-    private Employee employee;
+    private BigDecimal price;
+    private LocalDateTime paymentDate;
 }

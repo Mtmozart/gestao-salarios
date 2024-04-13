@@ -16,6 +16,7 @@ public class Profile {
     private Long id;
     @Enumerated(EnumType.STRING)
     private TypeProfile type;
+
     public boolean isAdmin(){
         return this.type.equals("ROLE_USER");
     };
@@ -23,7 +24,7 @@ public class Profile {
         return this.type.equals("ROLE_MANAGER");
     };
     public boolean isEmployee(){
-        return this.type.equals("TOLE_EMPLOYEE");
+        return this.type.equals("ROLE_EMPLOYEE");
     };
     public Long getId() {
         return id;

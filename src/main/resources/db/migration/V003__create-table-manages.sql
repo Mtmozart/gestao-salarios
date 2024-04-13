@@ -1,0 +1,6 @@
+CREATE TABLE manages(
+    employee_id BIGINT NOT NULL AUTO_INCREMENT,
+    user_id BIGINT NOT NULL,
+    PRIMARY KEY(employee_id),
+    CONSTRAINT MANAGES_FK_USER FOREIGN KEY(user_id) REFERENCES users(id)
+);
