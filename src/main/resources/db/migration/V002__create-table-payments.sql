@@ -1,7 +1,10 @@
 CREATE TABLE payments(
-    id BIGINT NOT NULL AUTO_INCREMENT,
-    price DECIMAL (8, 2) NOT NULL,
+    id VARCHAR(50) NOT NULL,
+    from_user BIGINT NOT NULL,
+    to_user BIGINT NOT NULL,
+    price DECIMAL(8, 2) NOT NULL,
     payment_date DATE NOT NULL,
-    PRIMARY KEY(id)
+    PRIMARY KEY(id),
+    CONSTRAINT PAYMENTS_FK_FROM_USER FOREIGN KEY(from_user) REFERENCES users(id),
+    CONSTRAINT PAYMENTS_FK_TO_USER FOREIGN KEY(to_user) REFERENCES users(id)
 );
-
