@@ -1,6 +1,7 @@
 package br.com.gestaosalario.gestaoempresa.domain.entities.payment;
 
-import br.com.gestaosalario.gestaoempresa.domain.entities.user.User;
+import br.com.gestaosalario.gestaoempresa.domain.entities.user.Employee;
+import br.com.gestaosalario.gestaoempresa.domain.entities.user.Manage;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,11 +23,11 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     @ManyToOne
-    @JoinColumn(name = "fromUser")
-    private User fromUser;
+    @JoinColumn(name = "fromManage")
+    private Manage fromManage;
     @ManyToOne
-    @JoinColumn(name = "toUser")
-    private User toUser;
+    @JoinColumn(name = "toEmployee")
+    private Employee toEmployee;
     private BigDecimal price;
     private LocalDateTime paymentDate;
 }

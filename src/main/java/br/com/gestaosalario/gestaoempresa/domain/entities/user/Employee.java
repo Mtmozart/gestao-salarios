@@ -21,6 +21,4 @@ public class Employee {
     private Long id;
     @OneToOne
     private User user;
-   /* @OneToMany(fetch = FetchType.EAGER)
-    private List<Payment> paymentsReceived = new ArrayList<>();*/
 }

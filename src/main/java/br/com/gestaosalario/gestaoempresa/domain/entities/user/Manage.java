@@ -6,16 +6,13 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Entity
-@Table(name = "menages")
-public class Menage {
+@Table(name = "manages")
+public class Manage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
