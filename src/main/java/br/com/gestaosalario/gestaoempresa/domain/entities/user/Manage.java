@@ -18,6 +18,9 @@ public class Manage {
     private Long id;
     @OneToOne
     private User user;
-   // private List<Payment> paymentsSeed = new ArrayList<>();
+    public Manage(User user) {
+        this.user = user;
+    }
+
 
 }

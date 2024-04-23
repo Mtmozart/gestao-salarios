@@ -19,6 +19,10 @@ public class Profile {
     @Enumerated(EnumType.STRING)
     private TypeProfile type;
 
+    public Profile(TypeProfile type) {
+        this.type = type;
+    }
+
     public boolean isAdmin(){
         return this.type.equals("ROLE_USER");
     };

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 
 @Data
 @NoArgsConstructor
@@ -27,4 +27,10 @@ public class User {
     @JoinTable(name = "users_profiles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "profile_id"))
     private List<Profile> profile = new ArrayList<>();
 
+    public User(String name, String email, String password, Profile profile) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.profile.add(profile);
+    }
 }
