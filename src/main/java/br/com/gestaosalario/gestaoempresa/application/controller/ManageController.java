@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/manage")
 public class ManageController {
-
-    @PostMapping("/create")
+ @PostMapping("/create")
     public String createUser(){
         return "Olá mundo.";
     }
