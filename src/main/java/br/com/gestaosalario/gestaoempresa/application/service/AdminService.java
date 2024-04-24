@@ -28,15 +28,14 @@ public class AdminService {
 
     @Transactional
     public void createManage(ManageRequestDto manageRequestDto) {
-        var user = userRepository.save(userMapper.toUserSave(manageRequestDto));
-        var newUser = userRepository.save(user);
-        var manager = new Manage(newUser);
+        var user = userRepository.save(userMapper.toUser(manageRequestDto));
+        var manager = new Manage(user);
         manageRepository.save(manager);
     }
 
 
     @Transactional
-    private void saveProfile(){
+    private void saveProfile() {
 
     }
 }
