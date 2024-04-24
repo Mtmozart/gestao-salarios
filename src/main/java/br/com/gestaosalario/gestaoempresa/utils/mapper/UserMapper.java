@@ -26,4 +26,12 @@ public class UserMapper {
                 profileMapper.toProfile(manageRequestDto.typeProfile()));
     }
 
+    public User toUserSave(ManageRequestDto manageRequestDto) {
+        return new User(
+                manageRequestDto.name(),
+                manageRequestDto.email(),
+                manageRequestDto.password()
+        );
+    }
+
 }
