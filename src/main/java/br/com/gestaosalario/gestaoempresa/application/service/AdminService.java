@@ -28,7 +28,9 @@ public class AdminService {
 
     @Transactional
     public void createManage(ManageRequestDto manageRequestDto) {
-        var user = userRepository.save(userMapper.toUser(manageRequestDto));
+        var user = userMapper.toUser(manageRequestDto);
+        user.setProfiles(user.getProfiles());
+        userRepository.save(user);
         var manager = new Manage(user);
         manageRepository.save(manager);
     }

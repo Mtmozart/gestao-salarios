@@ -23,17 +23,16 @@ public class User {
     private String name;
     private String email;
     private String password;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_profiles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "profile_id"))
     private List<Profile> profiles = new ArrayList<>();
 
-    public User(String name, String email, String password, Profile profile) {
+    public User(String name, String email, String password, Profile profiles) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.profiles.add(profile);
+        this.profiles.add(profiles);
     }
-
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;

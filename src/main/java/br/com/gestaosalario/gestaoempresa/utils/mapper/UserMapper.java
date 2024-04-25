@@ -1,9 +1,12 @@
 package br.com.gestaosalario.gestaoempresa.utils.mapper;
 
 import br.com.gestaosalario.gestaoempresa.domain.entities.user.Manage;
+import br.com.gestaosalario.gestaoempresa.domain.entities.user.Profile;
 import br.com.gestaosalario.gestaoempresa.domain.entities.user.User;
 import br.com.gestaosalario.gestaoempresa.dto.manageDto.ManageRequestDto;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class UserMapper {
