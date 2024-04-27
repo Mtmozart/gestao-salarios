@@ -32,7 +32,7 @@ public class AdminController {
         }
     }
 
-    @PostMapping("/create-g")
+    @PostMapping("/create-employee")
     public ResponseEntity<String> createEmployee(@RequestBody CreateUsersRequestDto createUsersRequestDto){
         try{
             adminService.createEmployee(createUsersRequestDto);
@@ -43,4 +43,5 @@ public class AdminController {
             return ResponseEntity.badRequest().body("Erro ao criar usuário.");
         }
     }
+    
 }
