@@ -1,7 +1,6 @@
 package br.com.gestaosalario.gestaoempresa.utils.email;
 
-import br.com.gestaosalario.gestaoempresa.domain.entities.user.User;
-import br.com.gestaosalario.gestaoempresa.dto.manageDto.ManageRequestDto;
+import br.com.gestaosalario.gestaoempresa.dto.manageDto.CreateUsersRequestDto;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,12 +11,12 @@ public class SendEmailCreateManager {
         this.sendEmail = sendEmail;
     }
 
-     public void send(ManageRequestDto manageRequestDto){
+     public void send(CreateUsersRequestDto createUsersRequestDto){
         sendEmail.sendEmail(
                 "Create manager success.",
-                manageRequestDto.email(),
-                "Congratulations, " + manageRequestDto.name() + ", we have success in create your profile, your data for login\n: "
-                        + "E-mail: " +    manageRequestDto.email() + " plus your password."
+                createUsersRequestDto.email(),
+                "Congratulations, " + createUsersRequestDto.name() + ", we have success in create your profile, your data for login: \n "
+                        + "E-mail: " +    createUsersRequestDto.email() + " plus your password."
         );
 
          System.out.println("Email enviado.");

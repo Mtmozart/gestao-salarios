@@ -21,4 +21,8 @@ public class Employee {
     private Long id;
     @OneToOne
     private User user;
+
+    public Employee(User user) {
+        this.user = user;
+    }
 }

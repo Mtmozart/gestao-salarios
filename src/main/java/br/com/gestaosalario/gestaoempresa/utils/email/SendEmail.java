@@ -20,10 +20,7 @@ public class SendEmail {
             email.setTo(from);
             email.setText(messageText);
             emailSender.send(email);
-//            System.out.println("Enviando email!");
-//            System.out.println(textoEmail);
 
-            //Simulando demora de 3 segundos para enviar email
             Thread.sleep(3000);
         } catch (Exception e) {
             throw new RuntimeException("Erro ao enviar email!" + e.getMessage());

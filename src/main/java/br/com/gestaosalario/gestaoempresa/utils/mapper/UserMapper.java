@@ -1,12 +1,9 @@
 package br.com.gestaosalario.gestaoempresa.utils.mapper;
 
 import br.com.gestaosalario.gestaoempresa.domain.entities.user.Manage;
-import br.com.gestaosalario.gestaoempresa.domain.entities.user.Profile;
 import br.com.gestaosalario.gestaoempresa.domain.entities.user.User;
-import br.com.gestaosalario.gestaoempresa.dto.manageDto.ManageRequestDto;
+import br.com.gestaosalario.gestaoempresa.dto.manageDto.CreateUsersRequestDto;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class UserMapper {
@@ -21,19 +18,19 @@ public class UserMapper {
         return manage.getUser();
     }
 
-    public User toUser(ManageRequestDto manageRequestDto) {
+    public User toUser(CreateUsersRequestDto createUsersRequestDto) {
         return new User(
-                manageRequestDto.name(),
-                manageRequestDto.email(),
-                manageRequestDto.password(),
-                profileMapper.toProfile(manageRequestDto.typeProfile()));
+                createUsersRequestDto.name(),
+                createUsersRequestDto.email(),
+                createUsersRequestDto.password(),
+                profileMapper.toProfile(createUsersRequestDto.typeProfile()));
     }
 
-    public User toUserSave(ManageRequestDto manageRequestDto) {
+    public User toUserSave(CreateUsersRequestDto createUsersRequestDto) {
         return new User(
-                manageRequestDto.name(),
-                manageRequestDto.email(),
-                manageRequestDto.password()
+                createUsersRequestDto.name(),
+                createUsersRequestDto.email(),
+                createUsersRequestDto.password()
         );
     }
 
