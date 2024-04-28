@@ -19,7 +19,7 @@ public class SendEmailCreateManager {
                         + "E-mail: " +    createUsersRequestDto.email() + " plus your password."
         );
 
-         System.out.println("Email enviado.");
+         System.out.println("Email has been sent.");
      }
 
 }

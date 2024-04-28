@@ -5,6 +5,5 @@ import br.com.gestaosalario.gestaoempresa.domain.entities.user.Manage;
 
 import java.math.BigDecimal;
 
-public record PaymentRequestDTO(Manage manage, Employee employee, BigDecimal price) {
-
+public record PaymentRequestDTO(Long manageId, Long employeeId, BigDecimal price) {
 }

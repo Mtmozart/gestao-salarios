@@ -37,7 +37,7 @@ public class AdminController {
         try{
             adminService.createEmployee(createUsersRequestDto);
             sendEmailCreateManager.send(createUsersRequestDto);
-            return ResponseEntity.ok("Usuário criado com sucesso, em breve você receberá um e-mail com suas informações");
+            return ResponseEntity.ok("Usuário criado com sucesso, em breve você receberá um e-mail com suas informações.");
         }
         catch (Exception ex){
             return ResponseEntity.badRequest().body("Erro ao criar usuário.");

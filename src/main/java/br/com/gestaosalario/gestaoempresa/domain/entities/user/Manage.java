@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "manages")
 public class Manage {
     @Id
+    @Column(name = "manage_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne

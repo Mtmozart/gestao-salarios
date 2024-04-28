@@ -19,9 +19,10 @@ import java.util.UUID;
 @Entity
 @Table(name = "payments")
 public class Payment {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "fromManage")
     private Manage fromManage;
@@ -30,4 +31,13 @@ public class Payment {
     private Employee toEmployee;
     private BigDecimal price;
     private LocalDateTime paymentDate;
+
+    public Payment(Manage fromManage, Employee toEmployee, BigDecimal price) {
+        this.fromManage = fromManage;
+        this.toEmployee = toEmployee;
+        this.price = price;
+        this.paymentDate = LocalDateTime.now();
+    }
+
+
 }
