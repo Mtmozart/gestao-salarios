@@ -6,6 +6,7 @@ import br.com.gestaosalario.gestaoempresa.domain.repositorys.EmployeeRepository;
 import br.com.gestaosalario.gestaoempresa.domain.repositorys.ManageRepository;
 import br.com.gestaosalario.gestaoempresa.domain.repositorys.UserRepository;
 import br.com.gestaosalario.gestaoempresa.dto.manageDto.CreateUsersRequestDto;
+import br.com.gestaosalario.gestaoempresa.infra.security.EncryptPassword;
 import br.com.gestaosalario.gestaoempresa.utils.mapper.ManageMapper;
 import br.com.gestaosalario.gestaoempresa.utils.mapper.UserMapper;
 import org.springframework.stereotype.Service;
@@ -19,20 +20,23 @@ public class AdminService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final EmployeeRepository employeeRepository;
+    private final EncryptPassword encryptPassword;
 
 
-    public AdminService(ManageRepository manageRepository, ManageMapper manageMapper, UserRepository userRepository, UserMapper userMapper, EmployeeRepository employeeRepository) {
+    public AdminService(ManageRepository manageRepository, ManageMapper manageMapper, UserRepository userRepository, UserMapper userMapper, EmployeeRepository employeeRepository, EncryptPassword encryptPassword) {
         this.manageRepository = manageRepository;
         this.manageMapper = manageMapper;
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.employeeRepository = employeeRepository;
+        this.encryptPassword = encryptPassword;
     }
 
     @Transactional
     public void createManage(CreateUsersRequestDto createUsersRequestDto) {
         var user = userMapper.toUser(createUsersRequestDto);
         user.setProfiles(user.getProfiles());
+        user.setPassword(encryptPassword.encrypt(createUsersRequestDto.password()));
         userRepository.save(user);
         var manager = new Manage(user);
         manageRepository.save(manager);
@@ -42,6 +46,7 @@ public class AdminService {
     public void createEmployee(CreateUsersRequestDto createUsersRequestDto) {
         var user = userMapper.toUser(createUsersRequestDto);
         user.setProfiles(user.getProfiles());
+        user.setPassword(encryptPassword.encrypt(createUsersRequestDto.password()));
         userRepository.save(user);
         var emplooyee = new Employee(user);
         employeeRepository.save(emplooyee);
