@@ -1,6 +1,7 @@
 package br.com.gestaosalario.gestaoempresa.utils.email;
 
 import br.com.gestaosalario.gestaoempresa.dto.manageDto.CreateUsersRequestDto;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,6 +12,7 @@ public class SendEmailCreateManager {
         this.sendEmail = sendEmail;
     }
 
+    @Async("AsyncEmail")
      public void send(CreateUsersRequestDto createUsersRequestDto){
         sendEmail.sendEmail(
                 "Create manager success.",

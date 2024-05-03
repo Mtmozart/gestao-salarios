@@ -41,6 +41,7 @@ public class ManageController {
     public ResponseEntity<String> makePayment(@RequestBody PaymentRequestDTO paymentRequestDTO) {
        try {
            paymentService.makePayment(paymentRequestDTO);
+           System.out.println("Thread do controller manage: " + Thread.currentThread().getName());
            sendEmailMakePayment.send(paymentRequestDTO);
            return ResponseEntity.ok("Pagamento realizado com sucesso, em breve enviaremos um comprovante.");
        }

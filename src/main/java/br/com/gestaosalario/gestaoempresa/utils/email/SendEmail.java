@@ -21,6 +21,7 @@ public class SendEmail {
             email.setText(messageText);
             emailSender.send(email);
 
+
             Thread.sleep(3000);
         } catch (Exception e) {
             throw new RuntimeException("Erro ao enviar email!" + e.getMessage());

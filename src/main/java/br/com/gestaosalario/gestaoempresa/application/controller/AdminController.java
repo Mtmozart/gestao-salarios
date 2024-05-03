@@ -3,6 +3,7 @@ package br.com.gestaosalario.gestaoempresa.application.controller;
 import br.com.gestaosalario.gestaoempresa.application.service.AdminService;
 import br.com.gestaosalario.gestaoempresa.dto.manageDto.CreateUsersRequestDto;
 import br.com.gestaosalario.gestaoempresa.utils.email.SendEmailCreateManager;
+import org.hibernate.event.spi.SaveOrUpdateEvent;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +29,8 @@ public class AdminController {
             return ResponseEntity.ok("Usuário criado com sucesso, em breve você receberá um e-mail com suas informações");
         }
         catch (Exception ex){
-            return ResponseEntity.badRequest().body("Erro ao criar usuário.");
+            System.out.println(ex.getMessage());
+            return ResponseEntity.badRequest().body("Erro ao criar usuário." + ex.getMessage());
         }
     }
 
