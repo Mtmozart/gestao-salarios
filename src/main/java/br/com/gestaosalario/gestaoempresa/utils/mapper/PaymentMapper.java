@@ -3,6 +3,7 @@ package br.com.gestaosalario.gestaoempresa.utils.mapper;
 import br.com.gestaosalario.gestaoempresa.application.service.EmployeeService;
 import br.com.gestaosalario.gestaoempresa.application.service.ManagerService;
 import br.com.gestaosalario.gestaoempresa.domain.entities.payment.Payment;
+import br.com.gestaosalario.gestaoempresa.dto.paymentDTO.PaymentResponseDTO;
 import br.com.gestaosalario.gestaoempresa.dto.paymentResquestDTO.PaymentRequestDTO;
 import br.com.gestaosalario.gestaoempresa.utils.email.SendEmailCreateManager;
 import org.springframework.stereotype.Component;
@@ -32,4 +33,13 @@ public class PaymentMapper {
                 paymentRequestDTO.price()
         );
     }
+
+   /* public PaymentResponseDTO toPaymentResponseDTO(Payment payment){
+        return new PaymentResponseDTO(
+                payment.getFromManage().getUser().getName(),
+                payment.getToEmployee().getUser().getName(),
+                payment.getPrice(),
+                payment.getPaymentDate()
+        );
+    }*/
 }
