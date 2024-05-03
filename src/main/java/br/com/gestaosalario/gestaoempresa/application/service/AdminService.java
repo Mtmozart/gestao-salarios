@@ -52,9 +52,4 @@ public class AdminService {
         employeeRepository.save(emplooyee);
     }
 
-
-    @Transactional
-    private void saveProfile() {
-
-    }
-}
+ }

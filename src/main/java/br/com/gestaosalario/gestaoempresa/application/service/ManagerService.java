@@ -7,7 +7,6 @@ import br.com.gestaosalario.gestaoempresa.domain.repositorys.ManageRepository;
 import br.com.gestaosalario.gestaoempresa.domain.repositorys.UserRepository;
 import br.com.gestaosalario.gestaoempresa.dto.manageDto.CreateUsersRequestDto;
 import br.com.gestaosalario.gestaoempresa.infra.security.EncryptPassword;
-import br.com.gestaosalario.gestaoempresa.utils.mapper.ManageMapper;
 import br.com.gestaosalario.gestaoempresa.utils.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

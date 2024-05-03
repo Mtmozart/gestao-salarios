@@ -15,15 +15,13 @@ import org.springframework.web.bind.annotation.*;
 public class ManageController {
     private final ManagerService managerService;
     private final SendEmailCreateManager sendEmailCreateManager;
-    private final EmployeeService employeeService;
     private final PaymentService paymentService;
     private final SendEmailMakePayment sendEmailMakePayment;
 
 
-    public ManageController(ManagerService managerService, SendEmailCreateManager sendEmailCreateManager, EmployeeService employeeService, PaymentService paymentService, SendEmailMakePayment sendEmailMakePayment) {
+    public ManageController(ManagerService managerService, SendEmailCreateManager sendEmailCreateManager, PaymentService paymentService, SendEmailMakePayment sendEmailMakePayment) {
         this.managerService = managerService;
         this.sendEmailCreateManager = sendEmailCreateManager;
-        this.employeeService = employeeService;
         this.paymentService = paymentService;
         this.sendEmailMakePayment = sendEmailMakePayment;
     }
