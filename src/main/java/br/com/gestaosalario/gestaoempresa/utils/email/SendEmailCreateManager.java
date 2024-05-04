@@ -12,7 +12,7 @@ public class SendEmailCreateManager {
         this.sendEmail = sendEmail;
     }
 
-    @Async("AsyncEmail")
+    @Async("asyncEmail")
      public void send(CreateUsersRequestDto createUsersRequestDto){
         sendEmail.sendEmail(
                 "Create manager success.",
