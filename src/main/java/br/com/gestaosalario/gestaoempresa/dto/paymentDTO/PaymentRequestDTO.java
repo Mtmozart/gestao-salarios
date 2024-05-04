@@ -1,4 +1,7 @@
 package br.com.gestaosalario.gestaoempresa.dto.paymentDTO;
 
-public record PaymentRequestDTO (Long ig){
+
+import java.math.BigDecimal;
+
+public record PaymentRequestDTO(Long manageId, Long employeeId, BigDecimal price) {
 }

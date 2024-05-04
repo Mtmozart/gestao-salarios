@@ -1,10 +1,9 @@
 package br.com.gestaosalario.gestaoempresa.application.controller;
 
-import br.com.gestaosalario.gestaoempresa.application.service.EmployeeService;
 import br.com.gestaosalario.gestaoempresa.application.service.ManagerService;
 import br.com.gestaosalario.gestaoempresa.application.service.PaymentService;
 import br.com.gestaosalario.gestaoempresa.dto.manageDto.CreateUsersRequestDto;
-import br.com.gestaosalario.gestaoempresa.dto.paymentResquestDTO.PaymentRequestDTO;
+import br.com.gestaosalario.gestaoempresa.dto.paymentDTO.PaymentRequestDTO;
 import br.com.gestaosalario.gestaoempresa.utils.email.SendEmailCreateManager;
 import br.com.gestaosalario.gestaoempresa.utils.email.SendEmailMakePayment;
 import org.springframework.http.ResponseEntity;

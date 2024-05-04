@@ -15,7 +15,6 @@ public class EmployeeController {
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
-
     @GetMapping("/payments/{id}")
     public ResponseEntity<List<PaymentResponseDTO>> allPayments(@PathVariable Long id) {
         List<PaymentResponseDTO> payments = employeeService.allPayments(id);

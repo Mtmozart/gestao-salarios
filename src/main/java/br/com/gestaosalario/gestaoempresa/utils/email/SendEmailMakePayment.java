@@ -1,13 +1,10 @@
 package br.com.gestaosalario.gestaoempresa.utils.email;
 
-import br.com.gestaosalario.gestaoempresa.domain.entities.user.Employee;
-import br.com.gestaosalario.gestaoempresa.domain.entities.user.Manage;
 import br.com.gestaosalario.gestaoempresa.domain.repositorys.EmployeeRepository;
 import br.com.gestaosalario.gestaoempresa.domain.repositorys.UserRepository;
-import br.com.gestaosalario.gestaoempresa.dto.manageDto.CreateUsersRequestDto;
-import br.com.gestaosalario.gestaoempresa.dto.paymentResquestDTO.PaymentRequestDTO;
+import br.com.gestaosalario.gestaoempresa.dto.paymentDTO.PaymentRequestDTO;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 @Component
 public class SendEmailMakePayment {
@@ -21,6 +18,7 @@ public class SendEmailMakePayment {
         this.employeeRepository = employeeRepository;
     }
 
+    @Async("asyncEmail")
     public void send(PaymentRequestDTO paymentRequestDTO) {
 
         var employee = employeeRepository.findById(paymentRequestDTO.employeeId());

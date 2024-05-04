@@ -42,7 +42,7 @@ public class EmployeeService {
                         p.getPrice(),
                         p.getPaymentDate()
                 ))
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
     public Employee searchEmployeeById(Long id) {
         var employee = employeeRepository.searchEmployeeById(id);
