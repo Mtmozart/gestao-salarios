@@ -9,6 +9,7 @@ import br.com.gestaosalario.gestaoempresa.dto.manageDto.CreateUsersRequestDto;
 import br.com.gestaosalario.gestaoempresa.infra.security.EncryptPassword;
 import br.com.gestaosalario.gestaoempresa.utils.mapper.ManageMapper;
 import br.com.gestaosalario.gestaoempresa.utils.mapper.UserMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +32,7 @@ public class AdminService {
         this.employeeRepository = employeeRepository;
         this.encryptPassword = encryptPassword;
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional
     public void createManage(CreateUsersRequestDto createUsersRequestDto) {
         var user = userMapper.toUser(createUsersRequestDto);
@@ -42,6 +43,7 @@ public class AdminService {
         manageRepository.save(manager);
     }
 
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Transactional
     public void createEmployee(CreateUsersRequestDto createUsersRequestDto) {
         var user = userMapper.toUser(createUsersRequestDto);
@@ -51,5 +53,4 @@ public class AdminService {
         var emplooyee = new Employee(user);
         employeeRepository.save(emplooyee);
     }
-
  }
