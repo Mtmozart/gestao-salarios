@@ -16,7 +16,7 @@ public class ValidationIfIsManager implements ValidationPayments {
     @Override
     public void validate(PaymentRequestDTO paymentRequestDTO) throws Exception {
         var manager = manageRepository.SearchManageByManageId(paymentRequestDTO.manageId());
-        if(!manager.getUser().getProfiles().contains(TypeProfile.ROLE_MANAGER)){
+        if(!manager.getUser().getProfiles().toString().contains(TypeProfile.ROLE_MANAGER.toString())){
             throw new Exception("Usuário sem permisão para fazer o pagamento");
         }
     }

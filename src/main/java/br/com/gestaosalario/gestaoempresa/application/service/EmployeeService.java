@@ -28,11 +28,11 @@ public class EmployeeService {
         this.userRepository = userRepository;
     }
 
-    public List<PaymentResponseDTO> allPayments(Long id){
+    public List<PaymentResponseDTO> allPayments(Long id) {
         List<PaymentResponseDTO> response = new ArrayList<>();
         var employee = searchEmployeeById(id);
         var payments = paymentRepository.findAllByToEmployee(employee);
-        if (payments.isEmpty()){
+        if (payments.isEmpty()) {
             return null;
         }
         return payments.stream()
@@ -44,6 +44,20 @@ public class EmployeeService {
                 ))
                 .collect(Collectors.toUnmodifiableList());
     }
+        public List<PaymentResponseDTO> paymentByMonth(Long id, String month) {
+            var employee = searchEmployeeById(id);
+            var payments = paymentRepository.findAllByToEmployee(employee);
+            return payments.stream()
+                    .filter(p -> p.getPaymentDate().getMonth().toString().equalsIgnoreCase(month))
+                    .map(p -> new PaymentResponseDTO(
+                            p.getToEmployee().getUser().getName(),
+                            p.getToEmployee().getUser().getName(),
+                            p.getPrice(),
+                            p.getPaymentDate()
+                    ))
+                    .collect(Collectors.toUnmodifiableList());
+        }
+
     public Employee searchEmployeeById(Long id) {
         var employee = employeeRepository.searchEmployeeById(id);
         if (employee == null) {

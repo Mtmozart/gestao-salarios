@@ -24,4 +24,14 @@ public class EmployeeController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/payments/{id}/{month}")
+    public ResponseEntity<List<PaymentResponseDTO>> paymentByMonth(@PathVariable Long id, @PathVariable  String month) {
+        List<PaymentResponseDTO> payments = employeeService.paymentByMonth(id, month);
+        if (!payments.isEmpty()) {
+            return ResponseEntity.ok(payments);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

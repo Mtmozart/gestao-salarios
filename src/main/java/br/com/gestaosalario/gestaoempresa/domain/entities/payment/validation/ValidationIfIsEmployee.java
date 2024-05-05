@@ -18,7 +18,8 @@ private final EmployeeRepository employeeRepository;
     @Override
     public void validate(PaymentRequestDTO paymentRequestDTO) throws Exception {
         var employee = employeeRepository.searchEmployeeById(paymentRequestDTO.employeeId());
-        if(!employee.getUser().getProfiles().contains(TypeProfile.ROLE_EMPLOYEE)){
+        System.out.println(employee.getUser().getProfiles().toString());
+        if(!employee.getUser().getProfiles().toString().contains(TypeProfile.ROLE_EMPLOYEE.toString())){
             throw new Exception("Usuário sem permisão para receber o pagamento");
         }
     }
