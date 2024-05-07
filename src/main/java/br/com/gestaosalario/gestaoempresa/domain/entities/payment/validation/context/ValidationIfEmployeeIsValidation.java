@@ -1,25 +1,22 @@
 package br.com.gestaosalario.gestaoempresa.domain.entities.payment.validation.context;
 
 import br.com.gestaosalario.gestaoempresa.domain.repositorys.EmployeeRepository;
-import br.com.gestaosalario.gestaoempresa.infra.security.RecoverToken;
+import br.com.gestaosalario.gestaoempresa.infra.security.ComparingTokenAndUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
-
-import java.util.Objects;
 
 @Component("ValidationIfEmployeeIsValidation")
 public class ValidationIfEmployeeIsValidation implements ValidationContext {
 private final EmployeeRepository employeeRepository;
-private final RecoverToken recoverToken;
+private final ComparingTokenAndUser comparingTokenAndUser;
 
-    public ValidationIfEmployeeIsValidation(EmployeeRepository employeeRepository, RecoverToken recoverToken) {
+    public ValidationIfEmployeeIsValidation(EmployeeRepository employeeRepository, ComparingTokenAndUser comparingTokenAndUser) {
         this.employeeRepository = employeeRepository;
-        this.recoverToken = recoverToken;
+        this.comparingTokenAndUser = comparingTokenAndUser;
     }
 
     @Override
     public void validate(Authentication authentication) throws Exception {
-       Object principal = authentication.getName();
-
+        Object principal = authentication.getName();
     }
 }

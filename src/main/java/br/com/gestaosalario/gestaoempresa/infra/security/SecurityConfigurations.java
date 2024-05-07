@@ -19,6 +19,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfigurations {
     @Autowired
     private SecurityFilter securityFilter;
+    private final SecurityFilterTwo securityFilterTwo;
+
+    public SecurityConfigurations(SecurityFilterTwo securityFilterTwo) {
+        this.securityFilterTwo = securityFilterTwo;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return
@@ -32,7 +38,8 @@ public class SecurityConfigurations {
                             req.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll();
                             req.anyRequest().authenticated();
                         })
-                        .addFilterBefore(securityFilter,   UsernamePasswordAuthenticationFilter.class)
+                        .addFilterBefore(securityFilter,  UsernamePasswordAuthenticationFilter.class)
+                        .addFilterBefore(securityFilterTwo, UsernamePasswordAuthenticationFilter.class)
                         .build();
     }
 
