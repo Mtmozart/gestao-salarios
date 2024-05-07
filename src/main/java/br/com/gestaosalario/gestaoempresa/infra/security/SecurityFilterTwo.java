@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.OptionalInt;
 
 @Component
 public class SecurityFilterTwo extends OncePerRequestFilter {
@@ -27,12 +29,35 @@ public class SecurityFilterTwo extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         System.out.println("Entrei no filtro 2");
-        String requestUri = request.getRequestURI();
-        System.out.println(requestUri.toString());
+        String requestUri = request.getRequestURI().toString();
+        searchID(requestUri);
 
 
-
+        var tokenJWT = recoverToken(request);
         filterChain.doFilter(request, response);
     }
+
+    private String recoverToken(HttpServletRequest request) {
+        var authorizationHeader = request.getHeader("Authorization");
+        if (authorizationHeader != null) {
+            return authorizationHeader.replace("Bearer ", "");
+        }
+        return null;
+    }
+
+    private String searchID(String requestUri) {
+        String[] url = requestUri.toString().split("/");
+  //falta treinar o básico kkkk quem diria, mas estou sem cabeça
+
+
+
+
+
+
+        return  null;
+
+
+    }
+
 
 }

@@ -15,7 +15,7 @@ public class EmployeeController {
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
-    @GetMapping("/payments/{id}")
+    @GetMapping("/payments/id/{id}")
     public ResponseEntity<List<PaymentResponseDTO>> allPayments(@PathVariable Long id) {
         List<PaymentResponseDTO> payments = employeeService.allPayments(id);
         if (payments != null) {
@@ -24,8 +24,7 @@ public class EmployeeController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    @GetMapping("/payments/{id}/{month}")
+    @GetMapping("/payments/id/{id}/month/{month}")
     public ResponseEntity<List<PaymentResponseDTO>> paymentByMonth(@PathVariable Long id, @PathVariable  String month) {
         List<PaymentResponseDTO> payments = employeeService.paymentByMonth(id, month);
         if (!payments.isEmpty()) {
