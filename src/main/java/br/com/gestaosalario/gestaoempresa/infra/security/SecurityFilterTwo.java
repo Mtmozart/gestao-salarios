@@ -33,18 +33,22 @@ public class SecurityFilterTwo extends OncePerRequestFilter {
         System.out.println("Entrei no filtro 2");
         String requestUri = request.getRequestURI().toString();
         var id = searchId(requestUri);
+        if(id == null){
+            filterChain.doFilter(request, response);
+            return;
+        }
         var tokenJWT = recoverToken(request);
-        if (tokenJWT != null) {
+        if (tokenJWT != null && id != null) {
             var subject = tokenService.getSubject(tokenJWT);
-            var user = employeeRepository.findByEmail(subject);
-            System.out.println("teste" + id + user.get().getId());
-            if (id != null && Long.parseLong(id) == user.get().getId()) {
-              System.out.println("Deu certo a autenticação - id igual do token");
+            var user = employeeRepository.findById(Long.parseLong(id));
+            if (id != null && user.get().getUser().getEmail().equals(subject)) {
+                filterChain.doFilter(request, response);
+                return;
             }
         }
-        System.out.println("Deu certo a autenticação - id diferente do token");
-        filterChain.doFilter(request, response);
+        response.sendError(HttpServletResponse.SC_FORBIDDEN, "Acesso proibido");
     }
+
     private String searchId(String requestUri) {
         List<String> url = Arrays.asList(requestUri.toString().split("/"));
         var index = url.indexOf("id");
@@ -55,7 +59,6 @@ public class SecurityFilterTwo extends OncePerRequestFilter {
             return null;
         }
     }
-
     private String recoverToken(HttpServletRequest request) {
         var authorizationHeader = request.getHeader("Authorization");
         if (authorizationHeader != null) {
