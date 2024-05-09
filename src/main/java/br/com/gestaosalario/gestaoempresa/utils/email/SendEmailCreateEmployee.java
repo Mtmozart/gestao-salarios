@@ -1,6 +1,6 @@
 package br.com.gestaosalario.gestaoempresa.utils.email;
 
-import br.com.gestaosalario.gestaoempresa.dto.manageDto.CreateUsersRequestDto;
+import br.com.gestaosalario.gestaoempresa.dto.usersDto.CreateUsersRequestDto;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 

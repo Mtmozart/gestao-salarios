@@ -5,7 +5,7 @@ import br.com.gestaosalario.gestaoempresa.domain.entities.user.Manage;
 import br.com.gestaosalario.gestaoempresa.domain.repositorys.EmployeeRepository;
 import br.com.gestaosalario.gestaoempresa.domain.repositorys.ManageRepository;
 import br.com.gestaosalario.gestaoempresa.domain.repositorys.UserRepository;
-import br.com.gestaosalario.gestaoempresa.dto.manageDto.CreateUsersRequestDto;
+import br.com.gestaosalario.gestaoempresa.dto.usersDto.CreateUsersRequestDto;
 import br.com.gestaosalario.gestaoempresa.infra.security.EncryptPassword;
 import br.com.gestaosalario.gestaoempresa.utils.mapper.ManageMapper;
 import br.com.gestaosalario.gestaoempresa.utils.mapper.UserMapper;

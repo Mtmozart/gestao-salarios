@@ -1,9 +1,9 @@
 package br.com.gestaosalario.gestaoempresa.application.controller;
 
 import br.com.gestaosalario.gestaoempresa.application.service.AdminService;
-import br.com.gestaosalario.gestaoempresa.dto.manageDto.CreateUsersRequestDto;
+import br.com.gestaosalario.gestaoempresa.dto.usersDto.CreateUsersRequestDto;
 import br.com.gestaosalario.gestaoempresa.utils.email.SendEmailCreateManager;
-import org.hibernate.event.spi.SaveOrUpdateEvent;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +22,7 @@ public class AdminController {
     }
 
     @PostMapping("/create-manage")
-    public ResponseEntity<String> createManage(@RequestBody CreateUsersRequestDto createUsersRequestDto){
+    public ResponseEntity<String> createManage(@RequestBody @Valid CreateUsersRequestDto createUsersRequestDto){
         try{
             adminService.createManage(createUsersRequestDto);
             sendEmailCreateManager.send(createUsersRequestDto);
@@ -35,7 +35,7 @@ public class AdminController {
     }
 
     @PostMapping("/create-employee")
-    public ResponseEntity<String> createEmployee(@RequestBody CreateUsersRequestDto createUsersRequestDto){
+    public ResponseEntity<String> createEmployee(@RequestBody @Valid CreateUsersRequestDto createUsersRequestDto){
         try{
             adminService.createEmployee(createUsersRequestDto);
             sendEmailCreateManager.send(createUsersRequestDto);

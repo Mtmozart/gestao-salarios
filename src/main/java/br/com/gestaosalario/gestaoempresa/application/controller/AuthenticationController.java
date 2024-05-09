@@ -5,6 +5,7 @@ import br.com.gestaosalario.gestaoempresa.domain.entities.user.User;
 import br.com.gestaosalario.gestaoempresa.dto.loginDataDTO.AuthenticationData;
 import br.com.gestaosalario.gestaoempresa.infra.security.DataTokenJWT;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,7 +27,7 @@ public class AuthenticationController {
     }
     @PostMapping("/login")
     @Transactional
-        public ResponseEntity login(@RequestBody AuthenticationData data){
+        public ResponseEntity login(@RequestBody @Valid AuthenticationData data){
         var authenticationTokenToken = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var authentication = authenticationManager.authenticate(authenticationTokenToken);
         var tokenJWT = tokenService.gerarToken((User) authentication.getPrincipal());

@@ -2,10 +2,11 @@ package br.com.gestaosalario.gestaoempresa.application.controller;
 
 import br.com.gestaosalario.gestaoempresa.application.service.ManagerService;
 import br.com.gestaosalario.gestaoempresa.application.service.PaymentService;
-import br.com.gestaosalario.gestaoempresa.dto.manageDto.CreateUsersRequestDto;
+import br.com.gestaosalario.gestaoempresa.dto.usersDto.CreateUsersRequestDto;
 import br.com.gestaosalario.gestaoempresa.dto.paymentDTO.PaymentRequestDTO;
 import br.com.gestaosalario.gestaoempresa.utils.email.SendEmailCreateManager;
 import br.com.gestaosalario.gestaoempresa.utils.email.SendEmailMakePayment;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class ManageController {
     }
 
     @PostMapping("/create-employee")
-    public ResponseEntity<String> createEmployee(@RequestBody CreateUsersRequestDto createUsersRequestDto) {
+    public ResponseEntity<String> createEmployee(@RequestBody @Valid CreateUsersRequestDto createUsersRequestDto) {
         try {
             managerService.createEmployee(createUsersRequestDto);
             sendEmailCreateManager.send(createUsersRequestDto);
@@ -37,7 +38,7 @@ public class ManageController {
     }
 
     @PostMapping("/make-payment")
-    public ResponseEntity<String> makePayment(@RequestBody PaymentRequestDTO paymentRequestDTO) {
+    public ResponseEntity<String> makePayment(@RequestBody @Valid PaymentRequestDTO paymentRequestDTO) {
        try {
            paymentService.makePayment(paymentRequestDTO);
            System.out.println("Thread do controller manage: " + Thread.currentThread().getName());

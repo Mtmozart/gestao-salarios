@@ -2,20 +2,17 @@ package br.com.gestaosalario.gestaoempresa.infra.security;
 
 import br.com.gestaosalario.gestaoempresa.application.service.TokenService;
 import br.com.gestaosalario.gestaoempresa.domain.repositorys.EmployeeRepository;
-import br.com.gestaosalario.gestaoempresa.domain.repositorys.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.OptionalInt;
+
 
 @Component
 public class SecurityFilterTwo extends OncePerRequestFilter {
@@ -31,17 +28,17 @@ public class SecurityFilterTwo extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         System.out.println("Entrei no filtro 2");
-        String requestUri = request.getRequestURI().toString();
+        String requestUri = request.getRequestURI();
         var id = searchId(requestUri);
         if(id == null){
             filterChain.doFilter(request, response);
             return;
         }
         var tokenJWT = recoverToken(request);
-        if (tokenJWT != null && id != null) {
+        if (tokenJWT != null) {
             var subject = tokenService.getSubject(tokenJWT);
             var user = employeeRepository.findById(Long.parseLong(id));
-            if (id != null && user.get().getUser().getEmail().equals(subject)) {
+            if (user.get().getUser().getEmail().equals(subject)) {
                 filterChain.doFilter(request, response);
                 return;
             }
@@ -50,11 +47,11 @@ public class SecurityFilterTwo extends OncePerRequestFilter {
     }
 
     private String searchId(String requestUri) {
-        List<String> url = Arrays.asList(requestUri.toString().split("/"));
+        List<String> url = Arrays.asList(requestUri.split("/"));
         var index = url.indexOf("id");
         if (index != -1 && index + 1 < url.size()) {
-            String id = url.get(index + 1);
-            return id;
+            return url.get(index + 1);
+
         } else {
             return null;
         }

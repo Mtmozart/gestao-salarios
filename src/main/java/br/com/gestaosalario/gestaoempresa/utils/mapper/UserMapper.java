@@ -2,7 +2,7 @@ package br.com.gestaosalario.gestaoempresa.utils.mapper;
 
 import br.com.gestaosalario.gestaoempresa.domain.entities.user.Manage;
 import br.com.gestaosalario.gestaoempresa.domain.entities.user.User;
-import br.com.gestaosalario.gestaoempresa.dto.manageDto.CreateUsersRequestDto;
+import br.com.gestaosalario.gestaoempresa.dto.usersDto.CreateUsersRequestDto;
 import org.springframework.stereotype.Component;
 
 @Component
