@@ -22,13 +22,10 @@ public class SecurityFilter extends OncePerRequestFilter {
     public SecurityFilter(TokenService tokenService, UserRepository userRepository) {
         this.tokenService = tokenService;
         this.userRepository = userRepository;
-
     }
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        System.out.println("Entrei no filtro");
-        var tokenJWT = recoverToken(request);
+        var tokenJWT = tokenService.recoverToken(request);
         try {
             if (tokenJWT != null) {
                 var subject = tokenService.getSubject(tokenJWT);
@@ -42,13 +39,5 @@ public class SecurityFilter extends OncePerRequestFilter {
             response.setContentType("application/json");
             response.getWriter().write("{ \"error\": \"" + e.getMessage() + "\" }");
         }
-    }
-
-    private String recoverToken(HttpServletRequest request) {
-        var authorizationHeader = request.getHeader("Authorization");
-        if (authorizationHeader != null) {
-            return authorizationHeader.replace("Bearer ", "");
-        }
-        return null;
     }
 }

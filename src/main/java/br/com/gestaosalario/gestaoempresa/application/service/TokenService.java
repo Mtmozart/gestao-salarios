@@ -41,8 +41,8 @@ public class TokenService {
 
     public String getSubject(String tokenJWT) {
         try {
-            var algoritmo = Algorithm.HMAC256(secret);
-            return JWT.require(algoritmo)
+            var algorithm = Algorithm.HMAC256(secret);
+            return JWT.require(algorithm)
                     .withIssuer("API Voll.med")
                     .build()
                     .verify(tokenJWT)
@@ -50,8 +50,6 @@ public class TokenService {
         } catch (JWTVerificationException exception) {
             throw new ManagerException("Token JWT inválido ou expirado!");
         }
-
-
     }
       public String recoverToken(HttpServletRequest request){
           var authorizationHeader = request.getHeader("Authorization");

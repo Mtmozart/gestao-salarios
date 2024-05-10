@@ -34,7 +34,7 @@ public class SecurityFilterTwo extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        var tokenJWT = recoverToken(request);
+        var tokenJWT = tokenService.recoverToken(request);
         try {
             if (tokenJWT != null) {
                 var subject = tokenService.getSubject(tokenJWT);
@@ -66,11 +66,4 @@ public class SecurityFilterTwo extends OncePerRequestFilter {
         }
     }
 
-    private String recoverToken(HttpServletRequest request) {
-        var authorizationHeader = request.getHeader("Authorization");
-        if (authorizationHeader != null) {
-            return authorizationHeader.replace("Bearer ", "");
-        }
-        return null;
-    }
-   }
+  }

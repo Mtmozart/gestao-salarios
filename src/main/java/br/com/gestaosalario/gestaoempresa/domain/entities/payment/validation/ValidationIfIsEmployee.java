@@ -1,10 +1,9 @@
 package br.com.gestaosalario.gestaoempresa.domain.entities.payment.validation;
 
-import br.com.gestaosalario.gestaoempresa.application.service.EmployeeService;
-import br.com.gestaosalario.gestaoempresa.application.service.ManagerService;
 import br.com.gestaosalario.gestaoempresa.domain.entities.user.TypeProfile;
 import br.com.gestaosalario.gestaoempresa.domain.repositorys.EmployeeRepository;
 import br.com.gestaosalario.gestaoempresa.dto.paymentDTO.PaymentRequestDTO;
+import br.com.gestaosalario.gestaoempresa.infra.exception.ManagerException;
 import org.springframework.stereotype.Component;
 
 @Component("ValidationIfIsEmployee")
@@ -16,11 +15,11 @@ private final EmployeeRepository employeeRepository;
     }
 
     @Override
-    public void validate(PaymentRequestDTO paymentRequestDTO) throws Exception {
+    public void validate(PaymentRequestDTO paymentRequestDTO) {
         var employee = employeeRepository.searchEmployeeById(paymentRequestDTO.employeeId());
         System.out.println(employee.getUser().getProfiles().toString());
         if(!employee.getUser().getProfiles().toString().contains(TypeProfile.ROLE_EMPLOYEE.toString())){
-            throw new Exception("Usuário sem permisão para receber o pagamento");
+            throw new ManagerException("Usuário sem permisão para receber o pagamento");
         }
     }
 }
