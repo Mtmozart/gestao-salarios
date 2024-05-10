@@ -80,4 +80,5 @@ public class ErrorManagement {
     public ResponseEntity errorAccesDenied() {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ExceptionMessage("Acesso negado"));
     }
-}
+
+  }

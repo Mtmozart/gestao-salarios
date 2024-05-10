@@ -1,6 +1,7 @@
 package br.com.gestaosalario.gestaoempresa.application.service;
 
 import br.com.gestaosalario.gestaoempresa.domain.entities.user.User;
+import br.com.gestaosalario.gestaoempresa.infra.exception.ManagerException;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
@@ -47,7 +48,7 @@ public class TokenService {
                     .verify(tokenJWT)
                     .getSubject();
         } catch (JWTVerificationException exception) {
-            throw new RuntimeException("Token JWT inválido ou expirado!");
+            throw new ManagerException("Token JWT inválido ou expirado!");
         }
 
 
