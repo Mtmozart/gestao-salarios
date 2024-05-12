@@ -15,6 +15,5 @@ private final ProfileService profileService;
 
     public Profile toProfile(TypeProfile typeProfile){
        return profileService.searchProfile(typeProfile);
-
     }
 }

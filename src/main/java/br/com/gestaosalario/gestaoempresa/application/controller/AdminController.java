@@ -1,6 +1,7 @@
 package br.com.gestaosalario.gestaoempresa.application.controller;
 
 import br.com.gestaosalario.gestaoempresa.application.service.AdminService;
+import br.com.gestaosalario.gestaoempresa.dto.defaultResponse.DefaultMessage;
 import br.com.gestaosalario.gestaoempresa.dto.usersDto.CreateUsersRequestDto;
 import br.com.gestaosalario.gestaoempresa.infra.exception.ManagerException;
 import br.com.gestaosalario.gestaoempresa.utils.email.SendEmailCreateManager;
@@ -23,17 +24,19 @@ public class AdminController {
     }
 
     @PostMapping("/create-manage")
-    public ResponseEntity<String> createManage(@RequestBody @Valid CreateUsersRequestDto createUsersRequestDto) throws Exception, ManagerException {
+    public ResponseEntity<DefaultMessage> createManage(@RequestBody @Valid CreateUsersRequestDto createUsersRequestDto) throws Exception, ManagerException {
         adminService.createManage(createUsersRequestDto);
         sendEmailCreateManager.send(createUsersRequestDto);
-        return ResponseEntity.ok("Usuário criado com sucesso, em breve você receberá um e-mail com suas informações");
+        var message = new DefaultMessage("Gerente criado com sucesso, em breve você receberá um e-mail com suas informações");
+        return ResponseEntity.ok().body(message);
     }
 
     @PostMapping("/create-employee")
-    public ResponseEntity<String> createEmployee(@RequestBody @Valid CreateUsersRequestDto createUsersRequestDto) throws Exception, ManagerException {
+    public ResponseEntity<DefaultMessage> createEmployee(@RequestBody @Valid CreateUsersRequestDto createUsersRequestDto) throws Exception, ManagerException {
         adminService.createEmployee(createUsersRequestDto);
         sendEmailCreateManager.send(createUsersRequestDto);
-        return ResponseEntity.ok("Usuário criado com sucesso, em breve você receberá um e-mail com suas informações.");
+            var message = new DefaultMessage("Empregado criado com sucesso, em breve você receberá um e-mail com suas informações.");
+            return ResponseEntity.ok().body(message);
     }
-    
+
 }
