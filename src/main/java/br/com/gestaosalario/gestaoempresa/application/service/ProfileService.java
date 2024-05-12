@@ -14,6 +14,7 @@ public class ProfileService {
     }
 
     public Profile searchProfile(TypeProfile profile){
+
         return profileRepository.findByType(profile);
     }
 }

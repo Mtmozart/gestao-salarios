@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Type;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -51,9 +52,9 @@ public class AdminService {
     @Transactional
     public void createManage(CreateUsersRequestDto createUsersRequestDto) {
         generalValidations.forEach(g -> g.validation(createUsersRequestDto));
-        generalValidations.forEach(g -> g.validation(createUsersRequestDto));
         securityType.securityType(createUsersRequestDto, TypeProfile.ROLE_MANAGER);
         var user = userMapper.toUser(createUsersRequestDto);
+        user.setProfiles(user.getProfiles());
         user.setPassword(encryptPassword.encrypt(createUsersRequestDto.password()));
         userRepository.save(user);
         var manager = new Manage(user);

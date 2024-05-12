@@ -15,24 +15,12 @@ public class UserMapper {
         this.profileMapper = profileMapper;
     }
 
-    public User fromManageToUser(Manage manage) {
-        return manage.getUser();
-    }
-
     public User toUser(CreateUsersRequestDto createUsersRequestDto) {
         return new User(
                 createUsersRequestDto.name(),
                 createUsersRequestDto.email(),
                 createUsersRequestDto.password(),
                 profileMapper.toProfile(createUsersRequestDto.typeProfile()));
-    }
-
-    public User toUserSave(CreateUsersRequestDto createUsersRequestDto) {
-        return new User(
-                createUsersRequestDto.name(),
-                createUsersRequestDto.email(),
-                createUsersRequestDto.password()
-        );
     }
 
 }
